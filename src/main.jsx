@@ -6,7 +6,8 @@ import App from "./pages/App";
 import "./index.css";
 
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root")).
+render(
   <React.StrictMode>
     <NextUIProvider>
       <App />
