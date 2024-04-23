@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-export default function CardModal({ isOpen, onClose, cardData }) {
+export default function CardModal({ isOpen, onClose, cardData, onAddToCart }) {
   const [scrollBehavior, setScrollBehavior] = useState("inside");
   const [backdrop, setBackdrop] = useState("blur");
 
@@ -26,7 +26,7 @@ export default function CardModal({ isOpen, onClose, cardData }) {
       onOpenChange={onClose}
       scrollBehavior={scrollBehavior}
       backdrop={backdrop}
-      size="xl"
+      size="3xl"
       className="bg-slate-300"
     >
       <ModalContent>
@@ -60,8 +60,14 @@ export default function CardModal({ isOpen, onClose, cardData }) {
               <Button color="danger" variant="light" onPress={onClose}>
                 Cerrar
               </Button>
-              <Button color="primary" onPress={onClose}>
-                Acción
+              <Button
+                color="primary"
+                onPress={() => {
+                  onAddToCart();
+                  onClose();
+                }}
+              >
+                Agregar al carrito
               </Button>
             </ModalFooter>
           </>
