@@ -10,6 +10,7 @@ import Products from "../Products";
 import Help from "../Help";
 import NavbarXL from "../../components/Navbar";
 import Layout from "../../components/Layout";
+import { ShoppingCartProvider } from "../../context";
 
 const App = () => {
   const routes = [
@@ -25,16 +26,18 @@ const App = () => {
   ];
 
   return (
-    <Router>
-      <NavbarXL />
-      <Layout>
-        <Routes>
-          {routes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </Routes>
-      </Layout>
-    </Router>
+    <ShoppingCartProvider>
+      <Router>
+        <NavbarXL />
+        <Layout>
+          <Routes>
+            {routes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </Routes>
+        </Layout>
+      </Router>
+    </ShoppingCartProvider>
   );
 };
 
