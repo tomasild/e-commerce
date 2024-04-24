@@ -20,20 +20,20 @@ export default function CardUI({ data }) {
 
   return (
     <>
-      <Card shadow="lg" isPressable onPress={handleCardPress}>
+      <Card shadow="lg" isPressable onPress={handleCardPress} className="bg-cromo">
         <CardBody className="overflow-visible p-0">
           <Image
             shadow="sm"
             radius="none"
             width="100%"
             alt={data.title}
-            className="w-full object-contain aspect-square"
+            className="w-full object-cover aspect-square"
             src={data.images?.[0] || ""}
           />
           <div className="absolute top-2 right-2 z-50">
             <Button
               isIconOnly
-              color="danger"
+              className="bg-azul_neon text-white"
               variant="solid"
               radius="full"
               aria-label="Add to cart"
@@ -54,7 +54,7 @@ export default function CardUI({ data }) {
             </Button>
           </div>
           <div className="absolute bottom-2 left-2 z-50">
-            <Chip color="secondary" className="text-xs">
+            <Chip className="text-xs bg-cromo border border-gris_oscuro">
               {data.category}
             </Chip>
           </div>

@@ -13,13 +13,14 @@ import {
 import React, { useState, useContext } from "react";
 import { ShoppingCartContext } from "../../context";
 
-export const AcmeLogo = () => (
+export const Logo = () => (
   <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
     <path
       clipRule="evenodd"
       d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
       fill="currentColor"
       fillRule="evenodd"
+      className="text-white"
     />
   </svg>
 );
@@ -39,18 +40,18 @@ export default function NavbarXL() {
   ];
 
   return (
-    <Navbar shouldHideOnScroll className="bg-slate-700">
+    <Navbar shouldHideOnScroll className="bg-gris_oscuro">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">TUKI</p>
+          <Logo />
+          <p className="font-bold text-inherit text-white">TUKI DIGITAL</p>
         </NavbarBrand>
       </NavbarContent>
-      <NavbarMenu className="bg-slate-700 text-white">
+      <NavbarMenu className="bg-gris_oscuro text-white">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.label}-${index}`}>
             <Link
@@ -65,22 +66,22 @@ export default function NavbarXL() {
       </NavbarMenu>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link href="/" className="text-white">
+          <Link href="/" className="text-white hover:text-cian_neon">
             Home
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href="/products" className="text-white">
+          <Link href="/products" className="text-white hover:text-cian_neon">
             Products
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href="/support" className="text-white">
+          <Link href="/support" className="text-white hover:text-cian_neon">
             Support
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href="/contact" className="text-white">
+          <Link href="/contact" className="text-white hover:text-cian_neon">
             Contact
           </Link>
         </NavbarItem>
@@ -88,24 +89,24 @@ export default function NavbarXL() {
       <NavbarContent justify="end">
         {isLogged ? (
           <NavbarItem className="hidden lg:flex">
-            <Link href="/my-account" color="foreground">
+            <Link href="/my-account" className="">
               My Account
             </Link>
           </NavbarItem>
         ) : (
           <NavbarItem className="hidden lg:flex">
-            <Link href="/login" color="foreground">
-              Login
+            <Link href="/login" className="text-cian_neon">
+              Log In
             </Link>
           </NavbarItem>
         )}
         <NavbarItem>
-          <Button as={Link} href="/signup" color="primary" variant="flat">
+          <Button as={Link} href="/signup" className="bg-azul_neon text-white rounded-md font-semibold" variant="solid">
             Sign Up
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button color="default">
+          <Button className="bg-plata_claro rounded-full" >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
