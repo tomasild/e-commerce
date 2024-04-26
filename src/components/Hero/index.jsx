@@ -12,7 +12,6 @@ const Hero = () => {
 
   return (
     <section className="relative w-full h-screen px-5 py-12 md:px-12 lg:px-16 max-w-7xl lg:py-24">
-      {/* Video de fondo */}
       <video
         ref={videoRef}
         autoPlay
@@ -23,10 +22,7 @@ const Hero = () => {
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-      {/* Capa para oscurecer el video */}
       <div className="absolute inset-0 bg-black opacity-50 z-20" />{" "}
-      {/* Cambiado z-index */}
-      {/* Contenido del componente */}
       <div className="flex w-full mx-auto text-left relative z-30">
         <div className="inline-flex items-center mx-auto align-middle text-center mt-24">
           <div>
@@ -38,12 +34,20 @@ const Hero = () => {
             </p>
             <div className="flex justify-center w-full max-w-2xl gap-2 mx-auto mt-6">
               <div className="mt-3 rounded-lg sm:mt-0">
-                <Button className="bg-azul_neon text-white" radius="full" size="md" >
+                <Button
+                  className="bg-azul_neon text-white"
+                  radius="full"
+                  size="md"
+                >
                   Get Tuki
                 </Button>
               </div>
               <div className="mt-3 rounded-lg sm:mt-0 sm:ml-3">
-                <Button className="bg-plata_claro rounded-md" radius="full" size="md">
+                <Button
+                  className="bg-plata_claro rounded-md"
+                  radius="full"
+                  size="md"
+                >
                   Be a Tuki
                 </Button>
               </div>

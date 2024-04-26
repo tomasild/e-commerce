@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { ShoppingCartContext } from '../../context'; // Ajusta la ruta según tu estructura
 import { Button } from '@nextui-org/react';
+import OrderCard from "../OrderCard"
 
 const CartSidebar = () => {
   const { isSidebarOpen, toggleSidebar, cartProducts } = useContext(ShoppingCartContext);
 
   return (
     <aside
-      className={`fixed top-0 right-0 h-[100vh] w-64 bg-gris_oscuro shadow-lg z-50 transform transition-transform duration-300 ${
+      className={`fixed top-0 right-0 h-[100vh] w-72 bg-gris_oscuro shadow-lg z-50 transform transition-transform duration-300 ${
         isSidebarOpen ? '' : 'translate-x-full'
       }`}
     >
@@ -23,9 +24,9 @@ const CartSidebar = () => {
       <ul className="flex flex-col gap-2 px-4 overflow-y-auto h-3/4">
         {cartProducts.length > 0 ? (
           cartProducts.map((product, index) => (
-            <li key={index} className="text-center text-plata_claro">
-              {product.title} - {product.category} - ${product.price}
-              {product.image?.[0] && <img src={product.image[0]} alt={product.title} />} {/* Validación */}
+            <li key={index}>
+              {/* Renderizar OrderCard para cada producto */}
+              <OrderCard product={product} />
             </li>
           ))
         ) : (
@@ -34,7 +35,7 @@ const CartSidebar = () => {
       </ul>
 
       {/* Botón para ir al checkout */}
-      <div className="px-4 pb-4">
+      <div className="px-4 pb-2">
         <Button
           className="bg-azul_neon text-white w-full font-bold hover:bg-opacity-80"
           variant="solid"

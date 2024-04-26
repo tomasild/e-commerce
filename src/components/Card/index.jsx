@@ -43,7 +43,7 @@ export default function CardUI({ data }) {
             className="w-full object-cover aspect-square"
             src={data.images?.[0] || ""}
           />
-          <div className="absolute top-2 right-2 z-50">
+          <div className="absolute top-2 right-2 z-10">
             <Button
               isIconOnly
               className="bg-azul_neon text-white"
@@ -66,7 +66,7 @@ export default function CardUI({ data }) {
               </svg>
             </Button>
           </div>
-          <div className="absolute bottom-2 left-2 z-50">
+          <div className="absolute bottom-2 left-2 z-10">
             <Chip className="text-xs bg-cromo border border-gris_oscuro">
               {data.category}
             </Chip>

@@ -8,7 +8,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para el sidebar
 
   const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev); // Cambia el estado del sidebar
+    setIsSidebarOpen((prev) => !prev); 
   };
 
   return (
