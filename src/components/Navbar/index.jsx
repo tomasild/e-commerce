@@ -54,11 +54,7 @@ export default function NavbarXL() {
       <NavbarMenu className="bg-gris_oscuro text-white">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.label}-${index}`}>
-            <Link
-              href={item.href}
-              className="text-white"
-              size="lg"
-            >
+            <Link href={item.href} className="text-white" size="lg">
               {item.label}
             </Link>
           </NavbarMenuItem>
@@ -101,12 +97,20 @@ export default function NavbarXL() {
           </NavbarItem>
         )}
         <NavbarItem>
-          <Button as={Link} href="/signup" className="bg-azul_neon text-white rounded-md font-semibold" variant="solid">
+          <Button
+            as={Link}
+            href="/signup"
+            className="bg-azul_neon text-white rounded-md font-semibold"
+            variant="solid"
+          >
             Sign Up
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button className="bg-plata_claro rounded-full" >
+          <Button
+            className="bg-plata_claro rounded-full"
+            onClick={() => context.toggleSidebar()}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -121,9 +125,7 @@ export default function NavbarXL() {
                 d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
               />
             </svg>
-            <span>
-              {context.count}
-            </span>
+            <span>{context.count}</span>
           </Button>
         </NavbarItem>
       </NavbarContent>

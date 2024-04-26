@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Modal,
   ModalContent,
@@ -9,11 +9,13 @@ import {
   Image,
   useDisclosure,
 } from "@nextui-org/react";
+import { ShoppingCartContext } from "../../context";
 
 export default function CardModal({ isOpen, onClose, cardData, onAddToCart }) {
   const [scrollBehavior, setScrollBehavior] = useState("inside");
   const [backdrop, setBackdrop] = useState("blur");
   const [selectedImage, setSelectedImage] = useState("");
+  const context = useContext(ShoppingCartContext);
 
   useEffect(() => {
     if (isOpen && cardData) {
@@ -24,6 +26,16 @@ export default function CardModal({ isOpen, onClose, cardData, onAddToCart }) {
   const handleThumbnailClick = (image) => {
     setSelectedImage(image); // Cambia la imagen principal al hacer clic en una miniatura
   };
+
+  const addProductToCart = (cardData) => {
+    context.setCount(context.count + 1);
+    context.setCartProducts([...context.cartProducts, cardData]);
+    context.toggleSidebar();
+  };
+  
+  useEffect(() => {
+    console.log("Carrito de compras actualizado:", context.cartProducts);
+  }, [context.cartProducts]);
 
   return (
     <Modal
@@ -91,7 +103,7 @@ export default function CardModal({ isOpen, onClose, cardData, onAddToCart }) {
               <Button
                 className="bg-gris_azul text-white font-bold border-none rounded-md w-full"
                 onPress={() => {
-                  onAddToCart();
+                  addProductToCart(cardData);
                   onClose();
                 }}
               >

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CardUI from "../../components/Card";
 import Hero from "../../components/Hero";
+import CartSidebar from "../../components/CartSidebar";
+
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -23,6 +25,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <CartSidebar />
     </>
   );
 }

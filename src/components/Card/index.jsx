@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Card, CardBody, CardFooter, Image, Chip } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { useDisclosure } from "@nextui-org/react";
@@ -9,7 +9,6 @@ export default function CardUI({ data }) {
   // Controlar el estado del modal y la data de la card seleccionada
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedCardData, setSelectedCardData] = useState(null);
-
   const context = useContext(ShoppingCartContext);
 
   // Manejador para abrir el modal con la data de la card seleccionada
@@ -18,9 +17,23 @@ export default function CardUI({ data }) {
     onOpen();
   };
 
+  const addProductToCart = (data) => {
+    context.setCount(context.count + 1);
+    context.setCartProducts([...context.cartProducts, data]);
+    context.toggleSidebar();
+  };
+  useEffect(() => {
+    console.log("Carrito de compras actualizado:", context.cartProducts);
+  }, [context.cartProducts]);
+
   return (
     <>
-      <Card shadow="lg" isPressable onPress={handleCardPress} className="bg-cromo">
+      <Card
+        shadow="lg"
+        isPressable
+        onPress={handleCardPress}
+        className="bg-cromo"
+      >
         <CardBody className="overflow-visible p-0">
           <Image
             shadow="sm"
@@ -37,7 +50,7 @@ export default function CardUI({ data }) {
               variant="solid"
               radius="full"
               aria-label="Add to cart"
-              onClick={() => context.setCount(context.count + 1)}
+              onClick={() => addProductToCart(data)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,8 +82,7 @@ export default function CardUI({ data }) {
       <CardModal
         isOpen={isOpen}
         onClose={onClose}
-        cardData={selectedCardData} // Pasar los datos de la card seleccionada
-        onAddToCart={() => context.setCount(context.count + 1)}
+        cardData={selectedCardData} // Pasar los datos de la card seleccionad
       />
     </>
   );
