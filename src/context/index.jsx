@@ -5,10 +5,13 @@ export const ShoppingCartContext = createContext();
 export const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para el sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev); 
+  const openSidebar = () => {
+    setIsSidebarOpen(true);
+  };
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
   };
 
   return (
@@ -18,8 +21,9 @@ export const ShoppingCartProvider = ({ children }) => {
         setCount,
         cartProducts,
         setCartProducts,
-        isSidebarOpen, // Agregamos el estado del sidebar
-        toggleSidebar, // Agregamos la función para cambiar el estado
+        isSidebarOpen,
+        openSidebar,
+        closeSidebar,
       }}
     >
       {children}

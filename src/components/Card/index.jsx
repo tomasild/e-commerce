@@ -20,11 +20,9 @@ export default function CardUI({ data }) {
   const addProductToCart = (data) => {
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, data]);
-    context.toggleSidebar();
+    context.openSidebar();
   };
-  useEffect(() => {
-    console.log("Carrito de compras actualizado:", context.cartProducts);
-  }, [context.cartProducts]);
+
 
   return (
     <>

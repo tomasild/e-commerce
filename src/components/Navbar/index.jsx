@@ -109,7 +109,7 @@ export default function NavbarXL() {
         <NavbarItem>
           <Button
             className="bg-plata_claro rounded-full"
-            onClick={() => context.toggleSidebar()}
+            onClick={() => context.openSidebar()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -7,7 +7,6 @@ import {
   ModalFooter,
   Button,
   Image,
-  useDisclosure,
 } from "@nextui-org/react";
 import { ShoppingCartContext } from "../../context";
 
@@ -30,12 +29,9 @@ export default function CardModal({ isOpen, onClose, cardData, onAddToCart }) {
   const addProductToCart = (cardData) => {
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, cardData]);
-    context.toggleSidebar();
+    context.openSidebar();
   };
-  
-  useEffect(() => {
-    console.log("Carrito de compras actualizado:", context.cartProducts);
-  }, [context.cartProducts]);
+
 
   return (
     <Modal
