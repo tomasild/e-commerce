@@ -17,13 +17,6 @@ export default function CardUI({ data }) {
     onOpen();
   };
 
-  const addProductToCart = (data) => {
-    context.setCount(context.count + 1);
-    context.setCartProducts([...context.cartProducts, data]);
-    context.openSidebar();
-  };
-
-
   return (
     <>
       <Card
@@ -48,7 +41,7 @@ export default function CardUI({ data }) {
               variant="solid"
               radius="full"
               aria-label="Add to cart"
-              onClick={() => addProductToCart(data)}
+              onClick={() => context.addProductToCart(data)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,11 +69,10 @@ export default function CardUI({ data }) {
         </CardFooter>
       </Card>
 
-      {/* Modal para mostrar la información de la card */}
       <CardModal
         isOpen={isOpen}
         onClose={onClose}
-        cardData={selectedCardData} // Pasar los datos de la card seleccionad
+        cardData={selectedCardData} 
       />
     </>
   );

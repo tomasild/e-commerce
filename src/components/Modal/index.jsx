@@ -26,11 +26,6 @@ export default function CardModal({ isOpen, onClose, cardData, onAddToCart }) {
     setSelectedImage(image); // Cambia la imagen principal al hacer clic en una miniatura
   };
 
-  const addProductToCart = (cardData) => {
-    context.setCount(context.count + 1);
-    context.setCartProducts([...context.cartProducts, cardData]);
-    context.openSidebar();
-  };
 
 
   return (
@@ -99,7 +94,7 @@ export default function CardModal({ isOpen, onClose, cardData, onAddToCart }) {
               <Button
                 className="bg-gris_azul text-white font-bold border-none rounded-md w-full"
                 onPress={() => {
-                  addProductToCart(cardData);
+                  context.addProductToCart(cardData);
                   onClose();
                 }}
               >
