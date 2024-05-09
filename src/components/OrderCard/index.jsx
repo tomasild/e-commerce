@@ -1,7 +1,8 @@
 import React from "react";
 import { Image } from "@nextui-org/react";
 
-export default function OrderCard({ product }) {
+export default function OrderCard({ product, deleteProduct}) {
+
   if (!product) return null; // Manejar la falta de datos del producto
   const total = product.cantidad * product.price;
 
@@ -31,6 +32,7 @@ export default function OrderCard({ product }) {
             <button
               aria-label="Delete"
               className="text-white hover:text-red-500"
+              onClick={() => deleteProduct(product.id)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

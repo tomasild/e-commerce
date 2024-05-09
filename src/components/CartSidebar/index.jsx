@@ -4,25 +4,13 @@ import { Button } from "@nextui-org/react";
 import OrderCard from "../OrderCard";
 
 const CartSidebar = () => {
-  const { isSidebarOpen, closeSidebar, cartProducts } =
-    useContext(ShoppingCartContext);
-
-  // Calcular el total del carrito usando la función reduce
-  const totalCarrito = cartProducts.reduce((acc, product) => {
-    // Para cada producto, calcula el costo total multiplicando el precio por la cantidad
-    const totalProducto = product.cantidad * product.price;
-
-    // Suma el costo total del producto al acumulador
-    return acc + totalProducto;
-  }, 0); // El segundo parámetro es el valor inicial del acumulador, aquí es 0
+  const { isSidebarOpen, closeSidebar, cartProducts, deleteProduct, totalCartPrice} = useContext(ShoppingCartContext);
 
   return (
     <aside
-      className={`fixed top-0 right-0 h-[100vh] w-72 bg-gris_oscuro shadow-lg z-50 transform transition-transform duration-300 ${
-        isSidebarOpen ? "" : "translate-x-full"
-      }`}
+      className={`fixed top-0 right-0 h-[100vh] w-72 bg-gris_oscuro shadow-lg z-50 transform transition-transform duration-300 ${isSidebarOpen ? "fixed" : "translate-x-full"
+        }`}
     >
-      {/* Botón para cerrar el sidebar svg x-mark */}
       <button
         className="absolute top-4 right-4 text-plata_claro hover:text-red-500"
         aria-label="Cerrar"
@@ -42,17 +30,17 @@ const CartSidebar = () => {
         </svg>
       </button>
 
-      {/* Título del Sidebar */}
       <h2 className="text-xl font-bold text-center py-3 text-gris_azul">
         Carrito de Compras
       </h2>
 
-      {/* Listado de productos */}
       <ul className="flex flex-col gap-2 px-4 overflow-y-auto h-3/4">
         {cartProducts.length > 0 ? (
           cartProducts.map((product) => (
             <li key={product.id}>
-              <OrderCard product={product} />
+              <OrderCard
+                product={product}
+                deleteProduct={deleteProduct} />
             </li>
           ))
         ) : (
@@ -62,21 +50,18 @@ const CartSidebar = () => {
         )}
       </ul>
 
-      {/* Mostrar el total y el botón para ir al checkout */}
       <div className="px-4 text-white space-y-1 mt-1">
-        {/* Muestra el total calculado del carrito, formateado a 2 decimales */}
         <strong className="text-lg font-semibold">
-          Total: ${totalCarrito.toFixed(0)}
+          Total: ${totalCartPrice.toFixed(2)}
         </strong>
 
-        {/* Botón para ir al checkout */}
         <Button
           className="bg-azul_neon text-white w-full font-bold hover:bg-opacity-80"
           variant="solid"
           radius="full"
           aria-label="Ir al Checkout"
           onClick={() => {
-            /* Aquí iría la función para ir al checkout */
+            /* función para ir al checkout */
           }}
         >
           Ir al Checkout
