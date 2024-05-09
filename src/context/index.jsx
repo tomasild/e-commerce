@@ -6,6 +6,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [order, setOrder] = useState([]);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);
@@ -13,11 +14,6 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const closeSidebar = () => {
     setIsSidebarOpen(false);
-  };
-
-  const deleteProduct = (id) => {
-    const filteredProducts = cartProducts.filter((product) => product.id !== id);
-    setCartProducts(filteredProducts);
   };
 
   const addProductToCart = (product) => {
@@ -40,13 +36,17 @@ export const ShoppingCartProvider = ({ children }) => {
     setCount(count + 1);
   };
 
+  const deleteProduct = (id) => {
+    const filteredProducts = cartProducts.filter((product) => product.id !== id);
+    setCartProducts(filteredProducts);
+  };
+
   const totalCartPrice = useMemo(() => {
     // Utiliza `reduce` para calcular la suma del precio de cada producto, multiplicado por su cantidad
     return cartProducts.reduce((total, product) => {
       return total + (product.cantidad * product.price);
     }, 0); // Inicia la suma desde cero
   }, [cartProducts]); // Solo recalcula el precio total cuando `cartProducts` cambia
-
 
 
   return (
@@ -61,7 +61,9 @@ export const ShoppingCartProvider = ({ children }) => {
         closeSidebar,
         addProductToCart,
         deleteProduct,
-        totalCartPrice
+        totalCartPrice,
+        order,
+        setOrder
       }}
     >
       {children}

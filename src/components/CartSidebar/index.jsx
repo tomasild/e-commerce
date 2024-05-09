@@ -4,7 +4,21 @@ import { Button } from "@nextui-org/react";
 import OrderCard from "../OrderCard";
 
 const CartSidebar = () => {
-  const { isSidebarOpen, closeSidebar, cartProducts, deleteProduct, totalCartPrice} = useContext(ShoppingCartContext);
+  const { isSidebarOpen, closeSidebar, cartProducts, setCartProducts, deleteProduct, totalCartPrice, order, setOrder } = useContext(ShoppingCartContext);
+
+  const handleCheckout = () => {
+    const newOrder = {
+      date: new Date(),
+      products: cartProducts,
+      quantity: cartProducts.length,
+      totalPrice: totalCartPrice,
+    };
+    setOrder([...order, newOrder]); 
+    setCartProducts([]);
+    closeSidebar();
+    console.log([...order, newOrder]); 
+  };
+
 
   return (
     <aside
@@ -61,7 +75,7 @@ const CartSidebar = () => {
           radius="full"
           aria-label="Ir al Checkout"
           onClick={() => {
-            /* función para ir al checkout */
+            handleCheckout()
           }}
         >
           Ir al Checkout
